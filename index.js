@@ -1,4 +1,4 @@
-function getKanaCallback(data) {
+global.getKanaCallback = data => {
     for (const key in data) {
         const reading = data[key].kanji.reading
         console.log(`${key}：`, reading.kunyomi, '/' , reading.onyomi)
