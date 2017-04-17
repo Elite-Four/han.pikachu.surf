@@ -1,0 +1,21 @@
+<template>
+<div>
+  <router-link to="/wd/河曲智叟">合合合</router-link>
+  <text-field></text-field>
+  <result-panel></result-panel>
+</div>
+</template>
+
+<script>
+import ResultPanel from './ResultPanel.san'
+import TextField from './TextField.san'
+import {Link} from 'san-router'
+
+export default {
+  components: {
+    'router-link': Link,
+    'result-panel': ResultPanel,
+    'text-field': TextField
+  }
+}
+</script>
