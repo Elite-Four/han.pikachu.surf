@@ -1,0 +1,5 @@
+<template>
+<div>
+  <input value="{= word =}">
+</div>
+</template>

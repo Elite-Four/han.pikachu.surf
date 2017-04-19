@@ -1,16 +1,7 @@
 <template>
 <div>
-  <input value="{= name =}">
-  <p>{{name}}</p>
+  <ul san-for="item in result">
+    <li>{{item.han}} - {{item.kunyomi}} / {{item.onyomi}}</li>
+  </ul>
 </div>
 </template>
-
-<script>
-export default {
-  initData: function () {
-    return {
-      name: 'foo'
-    }
-  }
-}
-</script>

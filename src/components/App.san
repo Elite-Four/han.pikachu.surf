@@ -1,12 +1,13 @@
 <template>
 <div>
-  <router-link to="/wd/河曲智叟">合合合</router-link>
-  <text-field></text-field>
-  <result-panel></result-panel>
+  <text-field prop-word="{= word =}"></text-field>
+  <result-panel prop-result="{= result =}"></result-panel>
 </div>
 </template>
 
 <script>
+import fetchJsonp from 'fetch-jsonp'
+
 import ResultPanel from './ResultPanel.san'
 import TextField from './TextField.san'
 import {Link} from 'san-router'
@@ -16,6 +17,27 @@ export default {
     'router-link': Link,
     'result-panel': ResultPanel,
     'text-field': TextField
+  },
+  initData: function () {
+    return {
+      word: '',
+      result: []
+    }
+  },
+  attached () {
+    this.watch('word', async function (val) {
+      const data = await fetchJsonp(`http://app.tgbus.com/kanji/ToJp.ashx?keyword=${encodeURIComponent(val)}&encode=gb2312&app=3ds`).then(res => res.json())
+      const result = []
+      for (const key in data) {
+        const reading = data[key].kanji.reading
+        result.push({
+          han: key,
+          kunyomi: reading.kunyomi,
+          onyomi: reading.onyomi
+        })
+      }
+      this.data.set('result', result)
+    })
   }
 }
 </script>
