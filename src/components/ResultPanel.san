@@ -1,7 +1,13 @@
 <template>
 <div>
-  <ul san-for="item in result">
-    <li>{{item.han}} - {{item.kunyomi}} / {{item.onyomi}}</li>
+  <ul>
+    <li san-for="item in result">
+      <div>{{item.han}}</div>
+      <ul>
+        {{item.reading}}
+        <li san-for="kanji in item.kanji">{{kanji.reading.kunyomi}} / {{kanji.reading.onyomi}}</li>
+      </ul>
+    </li>
   </ul>
 </div>
 </template>

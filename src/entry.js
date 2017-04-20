@@ -9,12 +9,12 @@ router.add({
     rule: '/',
     Component: App,
     target: 'body'
-});
+})
 
 router.add({
-    rule: '/wd/:word',
+    rule: '/:word',
     Component: App,
     target: 'body'
-});
+})
 
-router.start();
+router.start()

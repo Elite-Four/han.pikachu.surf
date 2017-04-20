@@ -7,10 +7,10 @@
 
 <script>
 import fetchJsonp from 'fetch-jsonp'
-
+import {debounce} from 'lodash'
 import ResultPanel from './ResultPanel.san'
 import TextField from './TextField.san'
-import {Link} from 'san-router'
+import {router, Link} from 'san-router'
 
 export default {
   components: {
@@ -18,26 +18,41 @@ export default {
     'result-panel': ResultPanel,
     'text-field': TextField
   },
-  initData: function () {
+  initData () {
     return {
       word: '',
       result: []
     }
   },
+  updateQuery (word) {
+    this.data.set('word', word)
+    this.query(word)
+  },
+  routerChangeHandler (e, config) {
+    this.updateQuery(e.query.word)
+  },
+  async query (val) {
+    const data = await fetchJsonp(`http://app.tgbus.com/kanji/ToJp.ashx?keyword=${encodeURIComponent(val)}&encode=gb2312&app=3ds`).then(res => res.json())
+    const result = []
+    global.history.pushState({}, val, `/#/${val}`)
+    for (const key in data) {
+      const kanji = data[key].kanji.length ? data[key].kanji : [data[key].kanji]
+      result.push({
+        han: key,
+        kanji: kanji
+      })
+    }
+    this.data.set('result', result)
+  },
   attached () {
-    this.watch('word', async function (val) {
-      const data = await fetchJsonp(`http://app.tgbus.com/kanji/ToJp.ashx?keyword=${encodeURIComponent(val)}&encode=gb2312&app=3ds`).then(res => res.json())
-      const result = []
-      for (const key in data) {
-        const reading = data[key].kanji.reading
-        result.push({
-          han: key,
-          kunyomi: reading.kunyomi,
-          onyomi: reading.onyomi
-        })
-      }
-      this.data.set('result', result)
-    })
+    const word = this.data.get('route').query.word
+    this.updateQuery(word)
+    this.watch('word', debounce(this.query, 500))
+    this.routerChangeHandler = this.routerChangeHandler.bind(this)
+    router.listen(this.routerChangeHandler)
+  },
+  detached () {
+    router.unlisten(this.routerChangeHandler)
   }
 }
 </script>
