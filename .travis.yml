@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "6"
+branches:
+  only: master
+script:
+  - npm run build
+after_script:
+  - cd dist
+  - git init
+  - git config user.name "Dafrok"
+  - git config user.email "o.o@mug.dog"
+  - git add .
+  - git commit -m "Travis build prepare"
+  - git push  --force --quiet "https://${GITHUB_TOKEN}@github.com/Elite-Four/hankana.git" master:gh-pages
