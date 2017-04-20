@@ -1,6 +1,7 @@
 <template>
 <div>
-  <text-field prop-word="{= word =}"></text-field>
+  <h1>漢</h1>
+  <text-field prop-word="{= word =}" prop-loading="{= isLoading =}"></text-field>
   <result-panel prop-result="{= result =}"></result-panel>
 </div>
 </template>
@@ -21,7 +22,8 @@ export default {
   initData () {
     return {
       word: '',
-      result: []
+      result: [],
+      isLoading: false,
     }
   },
   updateQuery (word) {
@@ -29,10 +31,12 @@ export default {
     this.query(word)
   },
   routerChangeHandler (e, config) {
-    this.updateQuery(e.query.word)
+    this.updateQuery(e.query.word || '')
   },
   async query (val) {
+    this.data.set('isLoading', true)
     const data = await fetchJsonp(`http://app.tgbus.com/kanji/ToJp.ashx?keyword=${encodeURIComponent(val)}&encode=gb2312&app=3ds`).then(res => res.json())
+    this.data.set('isLoading', false)
     const result = []
     global.history.pushState({}, val, `/#/${val}`)
     for (const key in data) {
@@ -46,7 +50,7 @@ export default {
   },
   attached () {
     const word = this.data.get('route').query.word
-    this.updateQuery(word)
+    this.updateQuery(word || '')
     this.watch('word', debounce(this.query, 500))
     this.routerChangeHandler = this.routerChangeHandler.bind(this)
     router.listen(this.routerChangeHandler)
@@ -56,3 +60,24 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+html
+  font-size 100px
+  background url('../assets/bg.gif') repeat
+body
+  margin 0
+h1
+  font-size .36rem
+  text-align center
+
+@media (max-width: 639px)
+  body
+    padding-top .4rem
+  h1
+    display none
+
+@media (min-width: 640px)
+  h1
+    display block
+</style>

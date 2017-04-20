@@ -1,13 +1,64 @@
 <template>
-<div>
+<div class="result-panel">
   <ul>
-    <li san-for="item in result">
-      <div>{{item.han}}</div>
-      <ul>
-        {{item.reading}}
-        <li san-for="kanji in item.kanji">{{kanji.reading.kunyomi}} / {{kanji.reading.onyomi}}</li>
+    <li san-for="item in result" class="item">
+      <div class="han">{{item.han}}</div>
+      <ul class="kana">
+        <li san-for="kanji in item.kanji">
+          <div class="kunyomi" san-if="kanji.reading.kunyomi">{{kanji.reading.kunyomi}}</div>
+          <div class="onyomi" san-if="kanji.reading.onyomi">{{kanji.reading.onyomi}}</div>
+        </li>
       </ul>
     </li>
   </ul>
 </div>
 </template>
+
+<style lang="stylus">
+.result-panel
+  font-size .16rem
+  ul, li
+    margin 0
+    padding 0
+    list-style none
+  .item
+    display flex
+    padding .2rem
+  .han
+    font-size .32rem
+    line-height .5rem
+    text-align center
+    color #666
+    border .01rem solid #666
+    width .5rem
+    height .5rem
+    border-radius .5rem
+  .kana
+    flex 1
+    margin-left .2rem
+  .kunyomi, .onyomi
+    &::before
+      font-size .12rem
+      display inline-block
+      padding .01rem .03rem
+      color white
+      border-radius .03rem
+      margin-right .05rem
+  .kunyomi
+    &::before
+      background #ff99cc
+      content: '训读'
+  .onyomi
+    &::before
+      background #99ccff
+      content: '音读'
+
+@media (max-width: 639px)
+  .result-panel
+    width 100%
+
+@media (min-width: 640px)
+  .result-panel
+    width 640px
+    margin auto
+</style>

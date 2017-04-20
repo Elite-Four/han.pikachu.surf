@@ -1,5 +1,62 @@
 <template>
-<div>
-  <input value="{= word =}">
+<div class="text-field">
+  <div class="wrapper">
+    <input value="{= word =}" placeholder="请输入需要查询的汉字">
+  </div>
+  <div class="icon loading" san-if="loading"></div>
+  <div class="icon search"></div>
 </div>
 </template>
+
+<style lang="stylus">
+.text-field
+  box-shadow 0 0 .05rem gray
+  overflow hidden
+  box-sizing border-box
+  font-size 0
+  margin 0 auto
+  padding .1rem
+  position relative
+  background white
+  .wrapper
+    margin 0 .3rem
+    input
+      display block
+      width 100%
+      height 100%
+      border 0
+      outline 0
+      padding 0
+      margin 0
+      font-size .16rem
+      line-height .16rem
+      box-sizing border-box
+  .icon
+    position absolute
+    width .24rem
+    height .24rem
+    background-size 100% 100%
+    background-position center center
+    top 0
+    bottom 0
+    margin auto
+    &.loading
+      right .05rem
+      background-image url('../assets/loading.svg')
+    &.search
+      left .05rem
+      background-image url('../assets/search.svg')
+    
+
+@media (max-width: 639px)
+  .text-field
+    position fixed
+    top 0
+    width 100%
+    border-radius 0
+
+@media (min-width: 640px)
+  .text-field
+    width 6rem
+    border-radius .05rem
+</style>
