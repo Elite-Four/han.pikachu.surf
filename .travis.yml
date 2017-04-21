@@ -6,6 +6,7 @@ branches:
 script:
   - npm test
   - npm run build
+  - echo "han.pikachu.surf" > dist/CNAME
 after_script:
   - cd dist
   - git init
