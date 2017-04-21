@@ -1,5 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -13,7 +12,7 @@ module.exports = {
     rules: [
       {
         test: /\.san$/,
-        loader: 'san-loader',
+        loader: 'san-loader'
       },
       {
         test: /\.js$/,
@@ -27,7 +26,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader'
-      },
+      }
     ]
   },
   plugins: [

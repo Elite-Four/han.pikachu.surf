@@ -5,6 +5,7 @@
   "description": "Translate chinese charactor to japanese kana.",
   "main": "index.js",
   "scripts": {
+    "test": "standard",
     "dev": "webpack-dev-server --content-base dist --config ./build/webpack.dev.config.js --hot --inline",
     "build": "webpack -p --config ./build/webpack.prod.config.js"
   },
@@ -36,6 +37,7 @@
     "lodash": "^4.17.4",
     "normalize.css": "^6.0.0",
     "san-loader": "0.0.3",
+    "standard": "^10.0.2",
     "style-loader": "^0.13.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
