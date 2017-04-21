@@ -14,7 +14,7 @@
     "url": "git+https://github.com/Elite-Four/hankana.git"
   },
   "author": "Dafrok <o.o@mug.dog>",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/Elite-Four/hankana/issues"
   },
