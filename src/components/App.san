@@ -64,7 +64,9 @@ export default {
 <style lang="stylus">
 html
   font-size 100px
-  background url('../assets/bg.gif') repeat
+  background-color: #abc
+  background-image: repeating-linear-gradient(120deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 5px, transparent 10px, transparent 60px),repeating-linear-gradient(60deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 5px, transparent 5px, transparent 60px),linear-gradient(60deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1)),linear-gradient(120deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1))
+  background-size: 140px 240px
 body
   margin 0
 h1
@@ -73,7 +75,7 @@ h1
 
 @media (max-width: 639px)
   body
-    padding-top .4rem
+    padding-top .5rem
   h1
     display none
 

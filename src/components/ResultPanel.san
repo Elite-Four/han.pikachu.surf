@@ -28,8 +28,8 @@
     font-size .32rem
     line-height .5rem
     text-align center
-    color #666
-    border .01rem solid #666
+    color white
+    border .01rem solid white
     width .5rem
     height .5rem
     border-radius .5rem
