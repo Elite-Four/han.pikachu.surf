@@ -18,8 +18,10 @@
   padding .1rem
   position relative
   background white
+  height .5rem
   .wrapper
-    margin 0 .3rem
+    margin 0 .4rem
+    height .3rem
     input
       display block
       width 100%
@@ -28,8 +30,8 @@
       outline 0
       padding 0
       margin 0
-      font-size .16rem
-      line-height .16rem
+      font-size .18rem
+      line-height .3rem
       box-sizing border-box
   .icon
     position absolute
@@ -41,10 +43,10 @@
     bottom 0
     margin auto
     &.loading
-      right .05rem
+      right .15rem
       background-image url('../assets/loading.svg')
     &.search
-      left .05rem
+      left .15rem
       background-image url('../assets/search.svg')
     
 
@@ -54,7 +56,6 @@
     top 0
     width 100%
     border-radius 0
-
 @media (min-width: 640px)
   .text-field
     width 6rem
