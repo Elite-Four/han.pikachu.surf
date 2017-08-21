@@ -10,7 +10,7 @@
 
 <style lang="stylus">
 .text-field
-  box-shadow 0 0 .05rem gray
+  box-shadow 0 0 .05rem #ddd
   overflow hidden
   box-sizing border-box
   font-size 0

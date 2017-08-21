@@ -25,11 +25,12 @@
     display flex
     padding .2rem
   .han
-    font-size .32rem
+    font-size .24rem
     line-height .5rem
     text-align center
-    color white
-    border .01rem solid white
+    color #333
+    background white
+    box-shadow 0 0 .03rem black inset
     width .5rem
     height .5rem
     border-radius .5rem
