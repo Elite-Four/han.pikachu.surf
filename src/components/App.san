@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import fetchJsonp from 'fetch-jsonp'
 import {debounce} from 'lodash'
 import ResultPanel from './ResultPanel.san'
 import TextField from './TextField.san'
 import {router, Link} from 'san-router'
+import {db} from '../database.js'
 
 export default {
   components: {
@@ -35,17 +35,18 @@ export default {
   },
   async query (val) {
     this.data.set('isLoading', true)
-    const data = await fetchJsonp(`http://app.tgbus.com/kanji/ToJp.ashx?keyword=${encodeURIComponent(val)}&encode=gb2312&app=3ds`).then(res => res.json())
-    this.data.set('isLoading', false)
-    const result = []
-    global.history.pushState({}, val, `/#/${val}`)
-    for (const key in data) {
-      const kanji = data[key].kanji.length ? data[key].kanji : [data[key].kanji]
+    const result = [];
+    for (const str of val) {
+      const res = await db.ref(`/${str}`).once('value').then(snapshot => snapshot.val())
+      const han = res.app
+      const kanji = res.kanji.length ? res.kanji : [res.kanji]
       result.push({
-        han: key,
-        kanji: kanji
+        han,
+        kanji
       })
     }
+    this.data.set('isLoading', false)
+    global.history.pushState({}, val, `/#/${val}`)
     this.data.set('result', result)
   },
   attached () {
