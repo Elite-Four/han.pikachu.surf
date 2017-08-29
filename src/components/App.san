@@ -38,6 +38,9 @@ export default {
     const result = [];
     for (const str of val) {
       const res = await db.ref(`/${str}`).once('value').then(snapshot => snapshot.val())
+      if (!res) {
+        continue
+      }
       const han = res.app
       const kanji = res.kanji.length ? res.kanji : [res.kanji]
       result.push({
