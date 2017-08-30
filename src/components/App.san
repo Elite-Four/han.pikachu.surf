@@ -36,7 +36,7 @@ export default {
   async query (val) {
     this.data.set('isLoading', true)
     const result = [];
-    for (const str of val) {
+    for (const str of Array.from(new Set(val))) {
       const res = await db.ref(`/${str}`).once('value').then(snapshot => snapshot.val())
       if (!res) {
         continue
