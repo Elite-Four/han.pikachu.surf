@@ -49,8 +49,8 @@
   },
   "dependencies": {
     "fetch-jsonp": "^1.0.6",
-    "firebase": "^4.3.0",
     "san": "^3.1.2",
-    "san-router": "^1.0.3"
+    "san-router": "^1.0.3",
+    "wilddog": "^2.5.15"
   }
 }

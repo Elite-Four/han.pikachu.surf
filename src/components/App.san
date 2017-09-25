@@ -48,13 +48,15 @@ export default {
         kanji
       })
     }
-    this.data.set('isLoading', false)
+    if (this.data) {
+        this.data.set('isLoading', false)
+        this.data.set('result', result)
+    }
     global.history.pushState({}, val, `/#/${val}`)
-    this.data.set('result', result)
   },
   attached () {
     const word = this.data.get('route').query.word
-    this.updateQuery(word || '')
+    this.updateQuery(decodeURIComponent(word || ''))
     this.watch('word', debounce(this.query, 500))
     this.routerChangeHandler = this.routerChangeHandler.bind(this)
     router.listen(this.routerChangeHandler)
