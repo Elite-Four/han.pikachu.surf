@@ -52,7 +52,7 @@ export default {
         this.data.set('isLoading', false)
         this.data.set('result', result)
     }
-    global.history.pushState({}, val, `/#/${val}`)
+    router.locator.redirect(`/${val}`)
   },
   attached () {
     const word = this.data.get('route').query.word
