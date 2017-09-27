@@ -31,7 +31,16 @@ export default {
     this.query(word)
   },
   routerChangeHandler (e, config) {
-    this.updateQuery(e.query.word || '')
+    this.updateQuery(this.decode(e.query.word))
+  },
+  decode (word) {
+    return decodeURIComponent(word || '')
+  },
+  encode (word) {
+    return encodeURIComponent(word || '')
+  },
+  redirect (word) {
+    router.locator.redirect(`/${this.encode(word)}`)
   },
   async query (val) {
     this.data.set('isLoading', true)
@@ -52,12 +61,11 @@ export default {
         this.data.set('isLoading', false)
         this.data.set('result', result)
     }
-    router.locator.redirect(`/${val}`)
   },
   attached () {
     const word = this.data.get('route').query.word
-    this.updateQuery(decodeURIComponent(word || ''))
-    this.watch('word', debounce(this.query, 500))
+    this.updateQuery(this.decode(word))
+    this.watch('word', debounce(this.redirect, 500))
     this.routerChangeHandler = this.routerChangeHandler.bind(this)
     router.listen(this.routerChangeHandler)
   },
