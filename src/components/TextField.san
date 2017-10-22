@@ -10,7 +10,7 @@
 
 <style lang="stylus">
 .text-field
-  box-shadow 0 0 .05rem #ddd
+  box-shadow 0 0 .03rem #666 inset
   overflow hidden
   box-sizing border-box
   font-size 0
@@ -18,8 +18,9 @@
   padding .1rem
   position relative
   background-color white
-  background-color rgba(255, 255, 255, 0.7)
+  background-color rgba(255, 255, 255, 0.8)
   height .5rem
+  border 1px solid #999
   .wrapper
     margin 0 .4rem
     height .3rem
@@ -58,9 +59,7 @@
     position fixed
     top 0
     width 100%
-    border-radius 0
 @media (min-width: 640px)
   .text-field
     width 6rem
-    border-radius .05rem
 </style>
