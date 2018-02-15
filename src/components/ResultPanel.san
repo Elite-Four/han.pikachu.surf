@@ -25,15 +25,33 @@
     display flex
     padding .2rem
   .han
-    font-size .24rem
-    line-height .5rem
-    text-align center
+    font-size .32rem
+    display flex
+    align-items center
+    justify-content center
     color #333
     background white
-    box-shadow 0 0 .03rem black inset
+    // box-shadow 0 0 .03rem black inset
     width .5rem
     height .5rem
-    border-radius .5rem
+    // border-radius .5rem
+    border 1px solid #999
+    position relative
+    &::before, &::after
+      content ''
+      position absolute
+      z-index 0
+      top 0
+      left 0
+      border 0px dashed #ccc
+    &::after
+      right 0
+      bottom 50%
+      border-bottom-width 1px
+    &::before
+      right 50%
+      bottom 0
+      border-right-width 1px
   .kana
     flex 1
     margin-left .2rem
