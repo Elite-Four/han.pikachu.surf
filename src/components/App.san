@@ -1,8 +1,8 @@
 <template>
 <div>
   <h1>漢</h1>
-  <text-field prop-word="{= word =}" prop-loading="{= isLoading =}"></text-field>
-  <result-panel prop-result="{= result =}"></result-panel>
+  <text-field word="{= word =}" loading="{= isLoading =}"></text-field>
+  <result-panel result="{= result =}"></result-panel>
 </div>
 </template>
 
@@ -47,6 +47,8 @@ export default {
     const result = [];
     for (const str of Array.from(new Set(val))) {
       const res = await db.ref(`/${str}`).once('value').then(snapshot => snapshot.val())
+      // const res = require('../mock.json')[0]
+      console.log(res)
       if (!res) {
         continue
       }
@@ -58,8 +60,8 @@ export default {
       })
     }
     if (this.data) {
-        this.data.set('isLoading', false)
-        this.data.set('result', result)
+      this.data.set('isLoading', false)
+      this.data.set('result', result)
     }
   },
   attached () {
@@ -78,14 +80,16 @@ export default {
 <style lang="stylus">
 html
   font-size 100px
-  color white
-  background-color #345
+  color #333
+  // background-color #345
   background-size 140px 240px
 body
   margin 0
 h1
   font-size .36rem
   text-align center
+*
+  box-sizing border-box
 
 @media (max-width: 639px)
   body
