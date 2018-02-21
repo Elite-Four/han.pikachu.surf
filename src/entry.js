@@ -1,3 +1,4 @@
+import 'core-js'
 import App from './components/App.san'
 import {router} from 'san-router'
 
