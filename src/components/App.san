@@ -11,7 +11,8 @@ import {debounce} from 'lodash'
 import ResultPanel from './ResultPanel.san'
 import TextField from './TextField.san'
 import {router, Link} from 'san-router'
-import {db} from '../database.js'
+import {db} from '../database'
+import note from '../note'
 
 export default {
   components: {
@@ -48,12 +49,14 @@ export default {
     for (const str of Array.from(new Set(val))) {
       const res = await db.ref(`/${str}`).once('value').then(snapshot => snapshot.val())
       // const res = require('../mock.json')[0]
-      console.log(res)
       if (!res) {
         continue
       }
       const han = res.app
-      const kanji = res.kanji.length ? res.kanji : [res.kanji]
+      const kanji = (res.kanji.length ? res.kanji : [res.kanji]).map(item => ({
+        onyomi: note(item.reading.onyomi),
+        kunyomi: note(item.reading.kunyomi)
+      }))
       result.push({
         han,
         kanji

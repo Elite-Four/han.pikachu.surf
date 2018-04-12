@@ -5,8 +5,8 @@
       <div class="han">{{item.han}}</div>
       <ul class="kana">
         <li san-for="kanji in item.kanji">
-          <div class="kunyomi" san-if="kanji.reading.kunyomi">{{kanji.reading.kunyomi}}</div>
-          <div class="onyomi" san-if="kanji.reading.onyomi">{{kanji.reading.onyomi}}</div>
+          <div class="kunyomi" san-if="kanji.kunyomi">{{kanji.kunyomi}}</div>
+          <div class="onyomi" san-if="kanji.onyomi">{{kanji.onyomi}}</div>
         </li>
       </ul>
     </li>
