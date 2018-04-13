@@ -47,7 +47,7 @@
   "dependencies": {
     "core-js": "^2.5.3",
     "fetch-jsonp": "^1.0.6",
-    "san": "^3.4.3",
+    "san": "^3.5.5",
     "san-router": "^1.0.3",
     "wilddog": "^2.5.15"
   }
