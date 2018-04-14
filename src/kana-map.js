@@ -162,7 +162,6 @@ export default {
   'ー': '-'
 }
 
-
 // export default {
 //   'あ': 'a',
 //   'か': 'ka',

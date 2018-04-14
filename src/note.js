@@ -1,6 +1,6 @@
 import kanaMap from './kana-map'
 
-function nounce(letter) {
+function nounce (letter) {
   if (letter === '-') {
     return '...'
   }
@@ -10,7 +10,7 @@ function nounce(letter) {
   return kanaMap[letter]
 }
 
-function note(word) {
+function note (word) {
   const result = [...word].map(nounce)
   return word + `（${result.join(' ')}）`
 }
