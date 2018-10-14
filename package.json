@@ -43,13 +43,13 @@
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "^2.11.3"
   },
   "dependencies": {
     "core-js": "^2.5.3",
     "fetch-jsonp": "^1.0.6",
     "san": "^3.5.5",
     "san-router": "^1.0.3",
-    "wilddog": "^2.5.15"
+    "wilddog": "^2.5.17"
   }
 }
