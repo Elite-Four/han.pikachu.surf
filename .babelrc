@@ -1,12 +1,12 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "targets": {
           "browsers": [">1%", "since 2015"]
         },
-        "useBuiltIns": true
+        "useBuiltIns": "usage"
       }
     ]
   ]
