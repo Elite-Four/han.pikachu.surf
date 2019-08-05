@@ -1,12 +1,21 @@
 <template>
 <label class="text-field">
-  <div class="wrapper">
+  <form class="wrapper" on-submit="onSubmit">
     <input value="{= word =}" placeholder="请输入需要查询的汉字">
-  </div>
+  </form>
   <div class="icon loading" san-if="loading"></div>
   <div class="icon search"></div>
 </label>
 </template>
+
+<script>
+export default {
+  onSubmit (e) {
+    e.preventDefault()
+    this.fire('submit', this.data.get('word'))
+  }
+}
+</script>
 
 <style lang="stylus">
 .text-field

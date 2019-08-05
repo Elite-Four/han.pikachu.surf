@@ -27,6 +27,7 @@
     "babel-plugin-transform-regenerator": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-runtime": "^6.23.0",
+    "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^1.0.0",
     "eslint": "^4.18.2",
     "eslint-loader": "^1.7.1",
@@ -48,9 +49,7 @@
   },
   "dependencies": {
     "core-js": "^2.5.3",
-    "fetch-jsonp": "^1.0.6",
     "san": "^3.5.5",
-    "san-router": "^1.0.3",
-    "wilddog": "^2.5.17"
+    "san-router": "^1.0.3"
   }
 }

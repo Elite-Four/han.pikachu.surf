@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>漢</h1>
-  <text-field word="{= word =}" loading="{= isLoading =}"></text-field>
+  <text-field word="{= word =}" loading="{= isLoading =}" on-submit="updateQuery"></text-field>
   <result-panel result="{= result =}"></result-panel>
 </div>
 </template>
@@ -11,7 +11,6 @@ import {debounce} from 'lodash'
 import ResultPanel from './ResultPanel.san'
 import TextField from './TextField.san'
 import {router, Link} from 'san-router'
-import {db} from '../database'
 import note from '../note'
 
 export default {
@@ -45,22 +44,34 @@ export default {
   },
   async query (val) {
     this.data.set('isLoading', true)
-    const result = [];
+    const result = []
+    let res
     for (const str of Array.from(new Set(val))) {
-      const res = await db.ref(`/${str}`).once('value').then(snapshot => snapshot.val())
-      // const res = require('../mock.json')[0]
-      if (!res) {
-        continue
+      const localData = localStorage.getItem(str)
+      if (localData) {
+        res = JSON.parse(localData)
       }
-      const han = res.app
-      const kanji = (res.kanji.length ? res.kanji : [res.kanji]).map(item => ({
-        onyomi: note(item.reading.onyomi),
-        kunyomi: note(item.reading.kunyomi)
-      }))
-      result.push({
-        han,
-        kanji
-      })
+      else {
+        try {
+          res = await fetch(`/dict/${str}.json`).then(res => res.json())
+          localStorage.setItem(str, JSON.stringify(res))
+        }
+        catch (e) {
+          continue
+        }
+      }
+
+      const item = {
+        han: res[0],
+        kanji: []
+      }
+      for (let i = 1; i < res.length; i++) {
+        item.kanji[i - 1] = {
+          onyomi: note(res[i][0]),
+          kunyomi: note(res[i][1])
+        }
+      }
+      result.push(item)
     }
     if (this.data) {
       this.data.set('isLoading', false)
@@ -70,7 +81,7 @@ export default {
   attached () {
     const word = this.data.get('route').query.word
     this.updateQuery(this.decode(word))
-    this.watch('word', debounce(this.redirect, 500))
+    // this.watch('word', debounce(this.redirect, 500))
     this.routerChangeHandler = this.routerChangeHandler.bind(this)
     router.listen(this.routerChangeHandler)
   },
