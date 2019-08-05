@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>漢</h1>
-  <text-field word="{= word =}" loading="{= isLoading =}" on-submit="updateQuery"></text-field>
+  <text-field word="{= word =}" loading="{= isLoading =}" on-submit="redirect"></text-field>
   <result-panel result="{= result =}"></result-panel>
 </div>
 </template>

@@ -33,6 +33,9 @@ export default {
   background-color rgba(255, 255, 255, 0.8)
   height .5rem
   border 2px solid #999
+  border 1px solid #ccc
+  border-radius 100px
+  box-shadow 0 3px 3px #ddd
   .wrapper
     margin 0 .4rem
     height .3rem
@@ -75,6 +78,7 @@ export default {
     // border-top 0
     // box-shadow 0 0 5px #ddd
     width 100%
+    border-radius 0
 @media (min-width: 640px)
   .text-field
     width 6rem
