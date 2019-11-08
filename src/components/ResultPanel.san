@@ -3,12 +3,17 @@
   <ul>
     <li san-for="item in result" class="item">
       <div class="han">{{item.han}}</div>
-      <ul class="kana">
+      <ul class="kana" s-if="item.kanji.length">
         <li san-for="kanji in item.kanji">
           <div class="kunyomi" san-if="kanji.kunyomi">{{kanji.kunyomi}}</div>
           <div class="onyomi" san-if="kanji.onyomi">{{kanji.onyomi}}</div>
         </li>
+        <li class="report">数据有误？请在<a target="_blank" href="https://github.com/Elite-Four/hankana/issues/new?title=[更新] 字符『{{item.han}}』">这里反馈</a>。</li>
       </ul>
+      <div class="kana" s-else>
+        <div>字符『<b>{{item.han}}</b>』的数据不存在。</div>
+        <div class="report">数据有误？请在<a target="_blank" href="https://github.com/Elite-Four/hankana/issues/new?title=[新增] 字符『{{item.han}}』">这里反馈</a>。</div>
+      </div>
     </li>
   </ul>
 </div>
@@ -55,6 +60,12 @@
   .kana
     flex 1
     margin-left .2rem
+    .report
+      margin-top: .04rem
+      color #b2b2b2
+      font-size .12rem
+      a
+        color #69c
   .kunyomi, .onyomi
     &::before
       font-size .12rem

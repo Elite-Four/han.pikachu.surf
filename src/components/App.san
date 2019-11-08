@@ -3,11 +3,16 @@
   <h1>漢</h1>
   <text-field word="{= word =}" loading="{= isLoading =}" on-submit="redirect"></text-field>
   <result-panel result="{= result =}"></result-panel>
+  <footer>
+    <a>隐私声明</a>
+    <span>&nbsp;|&nbsp;</span>
+    <a>问题反馈</a>
+  </footer>
 </div>
 </template>
 
 <script>
-import {debounce} from 'lodash'
+// import {debounce} from 'lodash'
 import ResultPanel from './ResultPanel.san'
 import TextField from './TextField.san'
 import {router, Link} from 'san-router'
@@ -57,7 +62,7 @@ export default {
           localStorage.setItem(str, JSON.stringify(res))
         }
         catch (e) {
-          continue
+          res = [str]
         }
       }
 
@@ -101,6 +106,10 @@ body
   margin 0
 h1
   font-size .36rem
+  text-align center
+
+footer
+  font-size .12rem
   text-align center
 *
   box-sizing border-box
