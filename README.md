@@ -1,4 +1,4 @@
-# hankana
+# han.pikachu.surf
 
 Translate chinese charactor to japanese kana.
 
