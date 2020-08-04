@@ -1,7 +1,7 @@
 <template>
 <label class="text-field">
   <form class="wrapper" on-submit="onSubmit">
-    <input value="{= word =}" placeholder="请输入需要查询的汉字">
+    <input type="search" value="{= word =}" placeholder="请输入需要查询的汉字">
   </form>
   <div class="icon loading" san-if="loading"></div>
   <div class="icon search"></div>
