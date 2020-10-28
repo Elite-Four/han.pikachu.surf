@@ -1,0 +1,8 @@
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+<ShortName>Hankana</ShortName>
+<Description>Search Hankana</Description>
+<InputEncoding>UTF-8</InputEncoding>
+<Image width="16" height="16" type="image/x-icon">https://han.pikachu.surf/favicon.ico</Image>
+<Url type="text/html" method="get" template="https://han.pikachu.surf/#/{searchTerms}"/>
+<moz:SearchForm>https://han.pikachu.surf</moz:SearchForm>
+</OpenSearchDescription>
